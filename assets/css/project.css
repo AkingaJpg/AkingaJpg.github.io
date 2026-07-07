@@ -50,9 +50,13 @@ body::before {
   display: flex; align-items: center; gap: 1rem;
 }
 
+.back-short { display: none; }
+
 @media (max-width: 768px) {
   .project-nav { padding: 1rem 1.5rem; }
   .project-nav-cat { display: none; }
+  .back-full { display: none; }
+  .back-short { display: inline; }
 }
 
 /* ─────────────────────────────────────────────
@@ -282,7 +286,7 @@ body::before {
 @media (max-width: 768px) {
   .project-images{ padding-top: 8rem;}
   .project-nav { padding: 1rem 1.5rem; }
-  .project-hero { padding: 10rem 6vw 4rem; }
+  .project-hero { padding: 10rem 6vw 0rem; }
   .project-end  { padding: 4rem 6vw; }
   .p-divider    { padding: 3rem 6vw; }
 }
