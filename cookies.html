@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akinga — Cookies</title>
+
+  <link rel="icon" href="assets/fav/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/fav/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/fav/icon-512.png" />
+  <link rel="apple-touch-icon" href="assets/fav/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/fav/site.webmanifest" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/project.css" />
+
+  <!-- Everything below is scoped to this page only — delete this file
+       and nothing elsewhere needs to change except the links to it. -->
+  <style>
+    body {
+      cursor: default;
+    }
+
+    .cookie-page .legal-inner {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cookie-emoji-huge {
+      font-size: 4rem;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      filter: grayscale(100%) opacity(0.5);
+    }
+
+    #cookie-btn {
+      margin-top: 2.5rem;
+      padding: 0.9rem 2.2rem;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    #cookie-btn:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    /* flying cookies */
+    .flying-cookie {
+      position: fixed;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      z-index: 9999;
+      will-change: transform, opacity;
+      user-select: none;
+      animation: cookie-fly linear forwards;
+    }
+
+    @keyframes cookie-fly {
+      from {
+        transform: translate(var(--sx), var(--sy)) rotate(0deg);
+        opacity: 0;
+      }
+
+      8% {
+        opacity: 1;
+      }
+
+      92% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translate(var(--ex), var(--ey)) rotate(var(--spin));
+        opacity: 0;
+      }
+    }
+
+    /* cookie cursor — only enabled once the "out of cookies" stage is hit */
+    .cookie-cursor-active,
+    .cookie-cursor-active * {
+      cursor: none !important;
+    }
+
+    #cookie-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: none;
+      pointer-events: none;
+      z-index: 10000;
+      will-change: transform;
+    }
+
+    .cookie-cursor-active #cookie-cursor {
+      display: block;
+    }
+
+    #cookie-cursor span {
+      display: inline-block;
+      font-size: 2rem;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: cookie-cursor-spin 4s linear infinite;
+    }
+
+    @keyframes cookie-cursor-spin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body class="cookie-page">
+
+  <!-- NAV -->
+  <nav class="project-nav">
+    <a href="index.html#index" class="project-nav-back">← Back to portfolio</a>
+    <a href="index.html" class="project-nav-logo">Akinga</a>
+    <div class="project-nav-right">
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-overlay" id="nav-overlay">
+    <ul class="nav-overlay-links">
+      <li><a href="index.html">Illustration</a></li>
+      <li><a href="index.html">Graphic Design</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+  </div>
+
+  <!-- ─────────────────────────────────────────
+     COOKIES
+───────────────────────────────────────────── -->
+  <main class="legal-page">
+    <div class="legal-inner">
+      <div class="section-eyebrow">Legal-ish</div>
+      <h1 class="section-title" style="font-size: clamp(2.6rem, 5vw, 4rem); margin-bottom: 2.5rem;">Cookies</h1>
+
+      <div class="cookie-emoji-huge">🍪</div>
+
+      <p id="cookie-message">
+        This website does not use cookies. No tracking, no analytics, no local storage —
+        nothing gets baked. It never has, and (see <a href="datenschutz.html">Datenschutz</a>) it never will.
+      </p>
+
+      <button id="cookie-btn" type="button">But I want cookies 🍪</button>
+    </div>
+  </main>
+
+  <div id="cookie-cursor" aria-hidden="true"><span>🍪</span></div>
+
+  <!-- ─────────────────────────────────────────
+     FOOTER
+───────────────────────────────────────────── -->
+  <footer>
+    <p>Akinga — Illustrator & Communication Designer</p>
+    <p>Stuttgart, Germany · © 2026</p>
+    <p><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a
+        href="cookies.html">Cookies</a></p>
+  </footer>
+
+  <script src="assets/js/nav-overlay.js"></script>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('cookie-btn');
+      const msg = document.getElementById('cookie-message');
+
+      const followUps = [
+        'Fine. Here are your cookies.',
+        'Okay, more cookies incoming.',
+        'This is getting excessive.',
+        "I'm out of cookies. Please stop. 😅",
+      ];
+
+      const cookieCounts = [3, 20, 50, 150];
+
+      let clickCount = 0;
+      let cursorActivated = false;
+      const cursorEl = document.getElementById('cookie-cursor');
+
+      function activateCookieCursor() {
+        if (cursorActivated) return;
+        cursorActivated = true;
+        document.body.classList.add('cookie-cursor-active');
+
+        let mouseX = 0, mouseY = 0, queued = false;
+        function applyPosition() {
+          cursorEl.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+          queued = false;
+        }
+        document.addEventListener('mousemove', e => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          if (!queued) {
+            queued = true;
+            requestAnimationFrame(applyPosition);
+          }
+        });
+      }
+
+      function spawnCookie() {
+        const el = document.createElement('span');
+        el.className = 'flying-cookie';
+        el.textContent = '🍪';
+
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const size = 1.4 + Math.random() * 2.2;
+        el.style.fontSize = size + 'rem';
+
+        // enter from a random edge, exit toward the opposite side
+        const edge = Math.floor(Math.random() * 4);
+        let sx, sy, ex, ey;
+        const overshoot = 80;
+        if (edge === 0) { sx = Math.random() * vw; sy = -overshoot; ex = sx + (Math.random() - 0.5) * vw; ey = vh + overshoot; }
+        else if (edge === 1) { sx = vw + overshoot; sy = Math.random() * vh; ex = -overshoot; ey = sy + (Math.random() - 0.5) * vh; }
+        else if (edge === 2) { sx = Math.random() * vw; sy = vh + overshoot; ex = sx + (Math.random() - 0.5) * vw; ey = -overshoot; }
+        else { sx = -overshoot; sy = Math.random() * vh; ex = vw + overshoot; ey = sy + (Math.random() - 0.5) * vh; }
+
+        const spin = (Math.random() > 0.5 ? 1 : -1) * (360 + Math.random() * 540);
+        el.style.setProperty('--sx', sx + 'px');
+        el.style.setProperty('--sy', sy + 'px');
+        el.style.setProperty('--ex', ex + 'px');
+        el.style.setProperty('--ey', ey + 'px');
+        el.style.setProperty('--spin', spin + 'deg');
+        el.style.animationDuration = (2.5 + Math.random() * 2.5) + 's';
+
+        document.body.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      }
+
+      btn.addEventListener('click', () => {
+        const stage = Math.min(clickCount, followUps.length - 1);
+        msg.textContent = followUps[stage];
+        const cookieCount = cookieCounts[Math.min(clickCount, cookieCounts.length - 1)];
+        clickCount++;
+        btn.textContent = 'More cookies 🍪';
+
+        if (stage === followUps.length - 1) activateCookieCursor();
+
+        for (let i = 0; i < cookieCount; i++) {
+          setTimeout(spawnCookie, i * 25);
+        }
+      });
+    })();
+  </script>
+
+</body>
+
+</html>

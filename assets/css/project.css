@@ -1,0 +1,288 @@
+/* ─────────────────────────────────────────────
+   PROJECT PAGE — shared styles
+   Dark romantic / Art Nouveau decay
+───────────────────────────────────────────── */
+
+/* ── Grain overlay (mirrors main site) ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  z-index: 999; pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ─────────────────────────────────────────────
+   NAV (project variant)
+───────────────────────────────────────────── */
+.project-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 4rem;
+  border-bottom: 1px solid var(--border-dim);
+  background: rgba(8, 8, 8, 0.94);
+  backdrop-filter: blur(8px);
+}
+
+.project-nav-back {
+  font-family: var(--font-heading);
+  font-size: 1rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--parchment-dim);
+  text-decoration: none; transition: color 0.25s;
+}
+.project-nav-back:hover { color: var(--gold); }
+
+.project-nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.9rem; color: var(--gold); text-decoration: none;
+  transition: color 0.25s;
+  position: absolute; left: 50%; transform: translateX(-50%);
+}
+.project-nav-logo:hover { color: var(--parchment); }
+
+.project-nav-cat {
+  font-family: var(--font-heading);
+  font-size: 1rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--parchment-dim); opacity: 0.5;
+}
+
+.project-nav-right {
+  display: flex; align-items: center; gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .project-nav { padding: 1rem 1.5rem; }
+  .project-nav-cat { display: none; }
+}
+
+/* ─────────────────────────────────────────────
+   PROJECT HERO
+───────────────────────────────────────────── */
+.project-hero {
+  padding: 14rem var(--px) 10rem;
+  padding-top: 8rem;
+  background: linear-gradient(to bottom, var(--bg) 15%, transparent 100%);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 2;
+}
+
+.project-eyebrow {
+  font-family: var(--font-heading);
+  font-size: 1.5rem; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 2rem;
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1;
+  color: var(--parchment);
+  margin-bottom: 1.5rem;
+}
+
+.project-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 300; font-style: italic;
+  color: var(--parchment-dim); opacity: 1;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+}
+
+.project-meta-row {
+  display: flex; gap: 3.5rem; flex-wrap: wrap;
+}
+
+.project-meta-item {
+  display: flex; flex-direction: column; gap: 0.3rem;
+}
+
+.project-meta-label {
+  font-family: var(--font-heading);
+  font-size: 1.5rem; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--gold); opacity: 0.7;
+}
+
+.project-meta-value {
+  font-family: var(--font-heading);
+  font-size: 2rem; color: var(--parchment-dim);
+}
+
+/* ─────────────────────────────────────────────
+   IMAGE SCROLL
+───────────────────────────────────────────── */
+.project-images {
+  padding: 8rem 0 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  position: relative; z-index: 1;
+}
+
+.project-figure {
+  width: 100%;
+  max-width: 720px;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-figure img,
+.project-figure video {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.project-figure:hover img,
+.project-figure:hover video {
+  transform: scale(1.012);
+}
+
+.project-figure--wide {
+  max-width: 1500px;
+}
+
+.project-figure--gif {
+  max-width: 900px;
+}
+
+.project-figure figcaption {
+  padding: 0.75rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 0.68rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--gold); opacity: 0.7;
+  text-align: center;
+}
+
+/* ─────────────────────────────────────────────
+   MOCKUP GRID (2-column, for web/UI projects)
+───────────────────────────────────────────── */
+.project-mockup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 0 10vw 5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.project-mockup-grid .project-figure {
+  max-width: none;
+  border: 1px solid var(--border-dim);
+}
+
+@media (max-width: 640px) {
+  .project-mockup-grid { grid-template-columns: 1fr; padding: 0 6vw 3rem; }
+}
+
+/* ─────────────────────────────────────────────
+   TRIPTYCH
+───────────────────────────────────────────── */
+.project-triptych {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  padding: 5rem 0;
+}
+
+.triptych-figure {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-dim);
+}
+
+.triptych-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.triptych-figure:hover img {
+  transform: scale(1.03);
+}
+
+.triptych-figure figcaption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 2.5rem 1.2rem 1rem;
+  background: linear-gradient(to top, rgba(8,8,8,0.8) 0%, transparent 100%);
+  font-family: var(--font-display);
+  font-size: 1rem; letter-spacing: 0.25em;
+  color: var(--gold); text-align: center;
+  opacity: 0; transition: opacity 0.35s;
+}
+.triptych-figure:hover figcaption { opacity: 1; }
+
+@media (max-width: 640px) {
+  .project-triptych {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 3rem 6vw;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   PROJECT FOOTER / NEXT
+───────────────────────────────────────────── */
+.project-end {
+  padding: 6rem 10vw;
+  display: flex; align-items: center; justify-content: flex-end;
+  flex-wrap: wrap; gap: 2rem;
+}
+
+.project-end-label {
+  font-family: var(--font-heading);
+  font-size: 0.66rem; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--parchment-dim); opacity: 0.4;
+}
+
+.project-end-back {
+  font-family: var(--font-display);
+  font-size: 1rem; color: var(--gold);
+  text-decoration: none; letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.15rem;
+  transition: border-color 0.25s, color 0.25s;
+}
+.project-end-back:hover { border-color: var(--gold); }
+
+/* ─────────────────────────────────────────────
+   DIVIDER
+───────────────────────────────────────────── */
+.p-divider {
+  display: flex; align-items: center; gap: 1.2rem;
+  width: 100%; max-width: 720px;
+}
+.p-divider-line {
+  flex: 1; height: 1px;
+  background: var(--border-dim);
+}
+.p-divider-glyph {
+  color: var(--gold); font-family: var(--font-display);
+  opacity: 0.4; font-size: 0.85rem;
+}
+
+/* ─────────────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1; transform: none;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .project-images{ padding-top: 8rem;}
+  .project-nav { padding: 1rem 1.5rem; }
+  .project-hero { padding: 10rem 6vw 4rem; }
+  .project-end  { padding: 4rem 6vw; }
+  .p-divider    { padding: 3rem 6vw; }
+}

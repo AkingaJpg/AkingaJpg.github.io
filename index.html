@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akinga — Illustrator & Communication Designer</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/fav/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/fav/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/fav/icon-512.png" />
+  <link rel="apple-touch-icon" href="assets/fav/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/fav/site.webmanifest" />
+
+  <!-- Fonts -->
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<!-- ─────────────────────────────────────────
+     NAV
+───────────────────────────────────────────── -->
+<nav>
+  <div class="nav-left">
+    <a href="#index" class="nav-logo">Akinga</a>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#index" class="nav-cat-link active" data-cat="all">All</a></li>
+      <li><a href="#index" class="nav-cat-link" data-cat="illustration">Illustration</a></li>
+      <li><a href="#index" class="nav-cat-link" data-cat="graphic">Graphic Design</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-overlay" id="nav-overlay">
+  <ul class="nav-overlay-links">
+    <li><a href="#index" class="nav-cat-link active" data-cat="all">All</a></li>
+    <li><a href="#index" class="nav-cat-link" data-cat="illustration">Illustration</a></li>
+    <li><a href="#index" class="nav-cat-link" data-cat="graphic">Graphic Design</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</div>
+
+<!-- ─────────────────────────────────────────
+     GALLERY
+───────────────────────────────────────────── -->
+<section id="index">
+
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- populated by main.js -->
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────
+     ABOUT
+───────────────────────────────────────────── -->
+<section id="about">
+  <div class="about-text">
+    <div class="section-eyebrow">About</div>
+    <h2 class="section-title">
+      The Hand<br>
+      <em style="font-style: italic; color: var(--gold); font-size: 0.78em;">behind the work</em>
+    </h2>
+
+    <p style="margin-top: 2rem;">
+      I'm an illustrator and communication designer whose work sits at the intersection of narrative imagery, type, and cultural memory.
+My practice draws on Nordic mythology, folklore, and the visual language of natural history — treating darkness not as absence, but as a medium in itself.
+ <!--<div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-glyph">✦</span>
+      <div class="divider-line"></div>
+    </div> 
+    A member of IO — Illustrationen Organisation e.V. 
+    </p>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-glyph">✦</span>
+      <div class="divider-line"></div>
+    </div>-->
+
+    A member of IO — Illustrationen Organisation e.V. 
+    </p>
+
+    <a href="mailto:akinga.commissions@gmail.com" class="about-email">akinga.commissions@gmail.com</a>
+
+  </div>
+
+  <div>
+    <div class="about-portrait">
+      <div class="portrait-placeholder">
+        <img src="assets/images/portrait-1.avif" class="portrait-image" alt="Portrait of Akinga" />
+       <!-- <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+          <circle cx="19" cy="19" r="17" stroke="#c9a84c" stroke-width="0.8"/>
+          <circle cx="19" cy="15" r="5.5" stroke="#c9a84c" stroke-width="0.8"/>
+          <path d="M5,34 Q9,24 19,24 Q29,24 33,34" stroke="#c9a84c" stroke-width="0.8" fill="none"/>
+          Portrait
+        </svg>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────
+     FOOTER
+───────────────────────────────────────────── -->
+<footer>
+  <p>Akinga — Illustrator & Communication Designer</p>
+  <p>Stuttgart, Germany · © 2026</p>
+  <p><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="cookies.html">Cookies</a></p>
+</footer>
+
+<!-- Script -->
+<script src="assets/js/projects-data.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/image-protect.js"></script>
+
+</body>
+</html>
